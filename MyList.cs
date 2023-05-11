@@ -7,36 +7,7 @@ class Program
     static void Main(string[] args)
     {
         MyList<int> list = new MyList<int>(3);
-        Console.WriteLine($"list count = {list.Count}\n");
-        list.Add(3);
-        Console.WriteLine($"a new element is added to the list");
-        for (int i = 0; i < list.Count; i++)
-            Console.WriteLine(list[i]);
-        Console.WriteLine($"list count = {list.Count}\n");
-        list.Clear();
-        Console.WriteLine($"list count = {list.Count}\n");
-
-        list.Add(11);
-        list.Add(23);
-        list.Add(3);
-        list.Add(6);
-        list.Add(2);
-        Console.WriteLine($"5 elements is added to the list");
-        Console.WriteLine($"list count = {list.Count}\n");
-
-        for (int i = 0; i < list.Count; i++)
-            Console.WriteLine(list[i]);
-        list.Sort();
-
-        foreach (int i in list)
-            Console.WriteLine(i);
-        Console.WriteLine($"list count = {list.Count}\n");
-
-        Console.WriteLine($"Removing from the array");
-        list.RemoveAt(2);
-        foreach (int i in list)
-            Console.WriteLine(i);
-        Console.WriteLine($"list count = {list.Count}\n");
+        //your realisation
         Console.ReadLine();
     }
 }
