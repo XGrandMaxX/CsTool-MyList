@@ -2,15 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-class Program
-{
-    static void Main(string[] args)
-    {
-        MyList<int> list = new MyList<int>(3);
-        //your realisation
-        Console.ReadLine();
-    }
-}
 class MyList<T> : IEnumerable<T>
 {
     private int arraySize;
