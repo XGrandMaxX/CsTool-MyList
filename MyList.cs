@@ -21,7 +21,7 @@ class MyList<T> : IEnumerable<T>
     public void Add(T item)
     {
         if (arraySize == array.Length)
-            Array.Resize(ref array, arraySize * 2);
+            Array.Resize(ref array, arraySize * 2 + 1);
 
         array[arraySize++] = item;
     }
