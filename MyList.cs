@@ -117,6 +117,9 @@ internal class MyList<T> : IEnumerable<T>
         }
     }
 
+    /// <summary>
+    /// Flips the list completely
+    /// </summary>
     public void Reverse()
     {
         T temp;
