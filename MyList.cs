@@ -2,13 +2,38 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-class MyList<T> : IEnumerable<T>
+internal class MyList<T> : IEnumerable<T>
 {
     private int arraySize;
     private T[] array;
-    public int Count { get => arraySize; }
-    public MyList() => array = new T[0];
-    public MyList(int capacity) => array = new T[capacity];
+    public int Capacity
+    {
+        get
+        {
+            int count = 0;
+            foreach (var item in array)
+            {
+                if (item != null)
+                    count++;
+                else
+                    break;
+            }
+            return count;
+        }
+    }
+
+    public int Count
+    {
+        get { return arraySize; }
+    }
+    public MyList()
+    {
+        array = new T[0];
+    }
+    public MyList(int capacity)
+    {
+        array = new T[capacity];
+    }
     public T this[int index]
     {
         get => array[index];
@@ -20,7 +45,7 @@ class MyList<T> : IEnumerable<T>
     /// </summary>
     public void Add(T item)
     {
-        if (arraySize == array.Length)
+        if (arraySize == Capacity)
             Array.Resize(ref array, arraySize * 2 + 1);
 
         array[arraySize++] = item;
@@ -33,7 +58,7 @@ class MyList<T> : IEnumerable<T>
     public bool Remove(T item)
     {
         int index = -1;
-        for (int i = 0; i < array.Length; i++)
+        for (int i = 0; i < arraySize; i++)
         {
             if (array[i].Equals(item))
             {
@@ -44,9 +69,9 @@ class MyList<T> : IEnumerable<T>
 
         if (index != -1)
         {
-            for (int i = index; i < array.Length - 1; i++)
+            for (int i = index; i < arraySize - 1; i++)
                 array[i] = array[i + 1];
-            array[arraySize--] = default;
+            array[--arraySize] = default;
             return true;
         }
         return false;
@@ -75,20 +100,31 @@ class MyList<T> : IEnumerable<T>
     }
 
     /// <summary>
-    /// Sorts the elements of the list depending on the selected sort type
-    /// 1 - bubble sort 2 - not implemented
+    /// Base bubble sort
     /// </summary>
     public void Sort()
     {
+        T temp;
         for (int i = 0; i < arraySize; i++)
         {
             for (int j = 1; j < arraySize; j++)
                 if (Comparer<T>.Default.Compare(array[j - 1], array[j]) > 0)
                 {
-                    T temp = array[j - 1];
+                    temp = array[j - 1];
                     array[j - 1] = array[j];
                     array[j] = temp;
                 }
+        }
+    }
+
+    public void Reverse()
+    {
+        T temp;
+        for (int i = 0; i < arraySize / 2; i++)
+        {
+            temp = array[i];
+            array[i] = array[arraySize - i - 1];
+            array[arraySize - i - 1] = temp;
         }
     }
 
