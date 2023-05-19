@@ -28,7 +28,7 @@ internal class MyList<T> : IEnumerable<T>
     }
     public MyList()
     {
-        array = new T[0];
+        { array = new T[0]; }
     }
     public MyList(int capacity)
     {
@@ -36,8 +36,8 @@ internal class MyList<T> : IEnumerable<T>
     }
     public T this[int index]
     {
-        get => array[index];
-        set => array[index] = value;
+        get { return array[index]; }
+        set { array[index] = value; }
     }
 
     /// <summary>
@@ -128,6 +128,17 @@ internal class MyList<T> : IEnumerable<T>
             temp = array[i];
             array[i] = array[arraySize - i - 1];
             array[arraySize - i - 1] = temp;
+        }
+    }
+
+    /// <summary>
+    /// Copies the list to array
+    /// </summary>
+    public void CopyTo(T[] array)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i] = this.array[i];
         }
     }
 
