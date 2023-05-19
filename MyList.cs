@@ -28,7 +28,7 @@ internal class MyList<T> : IEnumerable<T>
     }
     public MyList()
     {
-        { array = new T[0]; }
+        array = new T[0];
     }
     public MyList(int capacity)
     {
